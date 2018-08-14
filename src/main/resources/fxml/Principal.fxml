@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+    <children>
+        <VBox prefHeight="486.0" prefWidth="620.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" />
+                <Button fx:id="btnAbrir" mnemonicParsing="false" onAction="#AbrirClick" text="Abrir">
+                    <VBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                    </VBox.margin>
+                </Button>
+                <TableView fx:id="tblVwTimes" editable="true" onMouseClicked="#tblVwTimesClick" prefHeight="421.0" prefWidth="600.0">
+                    <columns>
+                        <TableColumn fx:id="colCla" editable="false" maxWidth="80.0" minWidth="70.0" prefWidth="80.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Classificação">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="clas" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colNome" editable="false" maxWidth="500.0" minWidth="100.0" prefWidth="200.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-LEFT;" text="Time">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nome" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colPontos" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Pontos">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="pontos" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colSdGol" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Saldo Gols">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="saldoGols" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colPart" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Partidas">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="partidas" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colVit" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Vitorias">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="vitorias" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colDer" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Derrotas">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="derrotas" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colEmp" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Empates">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="empates" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colGolPro" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Gol Pro">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="golPro" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colGolCo" editable="false" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Gol Contra">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="golContra" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#mnJogosClick" text="Exibir Jogos" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </children>
+        </VBox>
+        <StackPane fx:id="pnJogos" prefHeight="400.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                    <children>
+                        <Label fx:id="lblNomeTime" text="Nome do Time">
+                            <font>
+                                <Font name="System Bold" size="17.0" />
+                            </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                            <children>
+                                <Label text="Filtrar Resultados: ">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="btnEmCasa" mnemonicParsing="false" onAction="#FiltrarEmCasaClick" text="Em casa" />
+                                <Button fx:id="btnVisitante" mnemonicParsing="false" onAction="#FiltrarVisitanteClick" text="Visitante" />
+                                <Button fx:id="btnGanhou" mnemonicParsing="false" onAction="#FiltrarGanhouClick" text="Ganhou" />
+                                <Button fx:id="btnPerdeu" mnemonicParsing="false" onAction="#FiltrarPerdeuClick" text="Perdeu" />
+                                <Button fx:id="btnGanhouCasa" mnemonicParsing="false" onAction="#FiltrarGanhouCasaClick" text="Ganhou em casa" />
+                                <Button fx:id="btnPerdeuCasa" mnemonicParsing="false" onAction="#FiltrarPerdeuCasaClick" text="Perdeu em casa" />                        
+                                <Button fx:id="btnExibirTudo" mnemonicParsing="false" onAction="#mnJogosClick" text="Exibir Tudo" />
+                        
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#SalvarClick" text="Salvar" />
+                     </children>
+                  </HBox>
+                        <TableView fx:id="tblVwJogos" prefHeight="300.0" prefWidth="200.0">
+                            <columns>
+                                <TableColumn prefWidth="150.0" />
+                                <TableColumn fx:id="colTimeA" maxWidth="500.0" minWidth="100.0" prefWidth="200.0" text="Casa">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="timeA" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                      
+                                <TableColumn fx:id="colGolA" maxWidth="120.0" minWidth="35.0" prefWidth="100.0" style="-fx-alignment: CENTER-RIGHT;" text="Gols">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="golA" />
+                                    </cellValueFactory>
+                                </TableColumn>
+
+                                <TableColumn maxWidth="100.0" prefWidth="75.0" text="X" />
+                                <TableColumn fx:id="colGolB" prefWidth="75.0" style="-fx-alignment: CENTER-RIGHT;" text="Gols">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="golB" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="colTimeB" maxWidth="500.0" minWidth="100.0" prefWidth="200.0" style="-fx-alignment: CENTER-RIGHT;" text="Visitante">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="timeB" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <contextMenu>
+                                <ContextMenu>
+                                    <items>
+                                        <Menu text="Filtrar">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#FiltrarEmCasaClick" text="Em Casa" />
+                                                <MenuItem mnemonicParsing="false" onAction="#FiltrarVisitanteClick" text="Visitante" />
+                                                <MenuItem mnemonicParsing="false" onAction="#FiltrarGanhouClick" text="Ganhou" />
+                                                <MenuItem mnemonicParsing="false" onAction="#FiltrarPerdeuClick" text="Perdeu" />
+                                                <MenuItem mnemonicParsing="false" onAction="#FiltrarGanhouCasaClick" text="Exibir Tudo" />
+                                                <MenuItem mnemonicParsing="false" onAction="#FiltrarPerdeuCasaClick" text="Exibir Tudo" />
+                                                <MenuItem mnemonicParsing="false" onAction="#mnJogosClick" text="Exibir Tudo" />
+                                            </items>
+                                        </Menu>
+                                    </items>
+                                </ContextMenu>
+                            </contextMenu>
+                        </TableView>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#FecharJogosClick" text="Fechar" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets top="30.0" />
+            </padding>
+        </StackPane>
+        <MenuBar>
+            <menus>
+                <Menu text="_Arquivo">
+                    <items>
+                        <MenuItem onAction="#AbrirClick" text="_Abrir" />
+                        <MenuItem onAction="#mnFecharClick" text="_Fechar" />
+                    </items>
+                </Menu>
+                <Menu fx:id="mnTimes" disable="true" text="_Times">
+                    <items>
+                        <MenuItem fx:id="mnJogos" onAction="#mnJogosClick" text="Abrir _Jogos" />
+                        <Menu fx:id="mnFiltrar" disable="true" text="_Filtrar">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#FiltrarEmCasaClick" text="Em _Casa" />
+                                <MenuItem mnemonicParsing="false" onAction="#FiltrarVisitanteClick" text="_Visitante" />
+                                <MenuItem mnemonicParsing="false" onAction="#FiltrarGanhouClick" text="_Ganhou" />
+                                <MenuItem mnemonicParsing="false" onAction="#FiltrarPerdeuClick" text="_Perdeu" />
+                                <MenuItem mnemonicParsing="false" onAction="#FiltrarGanhouCasaClick" text="Ganhou em casa" />
+                                <MenuItem mnemonicParsing="false" onAction="#FiltrarPerdeuCasaClick" text="Perdeu em casa" />                        
+                                <MenuItem mnemonicParsing="false" onAction="#mnJogosClick" text="Exibir _Tudo" />
+                            </items>
+                        </Menu>
+                        <MenuItem fx:id="mnJogosFechar" disable="true" onAction="#FecharJogosClick" text="Fechar _Jogos" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>
